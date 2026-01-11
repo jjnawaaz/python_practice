@@ -1,15 +1,14 @@
-import os,certifi
+import os, certifi
 from dotenv import load_dotenv
 from motor.motor_asyncio import AsyncIOMotorClient
+
 load_dotenv()
-
-MONGO_URI = os.getenv("MONGO_URI")
-
+MONGO_URI=os.getenv("MONGO_URI")
 client = AsyncIOMotorClient(
     MONGO_URI,
-    tls= True,
+    tls=True,
     tlsCAFile=certifi.where()
-)
+)    
 
 db = client.fastapi_db
 users_collection = db.users
